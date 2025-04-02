@@ -17,8 +17,6 @@ export const authOption = {
         };
         const userInfo = await loginService(userData);
 
-        console.log("Authorize userInfo: ", userInfo);
-
         if (userInfo?.status !== "OK") {
           throw new Error(userInfo?.message);
         }

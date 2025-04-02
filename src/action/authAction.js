@@ -1,10 +1,11 @@
+"use server";
 import { registerService } from "@/service/auth/register.service";
 
 export const registerAction = async (registerFormData) => {
   try {
-    const username = registerFormData.get("username");
-    const email = registerFormData.get("email");
-    const password = registerFormData.get("password");
+    const username = registerFormData["username"];
+    const email = registerFormData["email"];
+    const password = registerFormData["password"];
 
     const registerData = {
       username: username,
@@ -13,7 +14,10 @@ export const registerAction = async (registerFormData) => {
     };
 
     const registerResponse = await registerService(registerData);
+    console.log("register response : ", registerResponse);
 
     return { success: true, data: registerResponse };
-  } catch (error) {}
+  } catch (error) {
+    return { success: false, data: { message: "Error : " + error } };
+  }
 };

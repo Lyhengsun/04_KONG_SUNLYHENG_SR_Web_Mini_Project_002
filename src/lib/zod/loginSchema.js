@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const loginSchema = z.object({
-  userName: z
+  username: z
     .string()
     .min(1, "Username is required")
     .regex(
-      "^[a-zA-Z0-9_\\s]+$",
+      RegExp("^[a-zA-Z0-9_\\s]+$"),
       "Username can only contain letters, numbers, space and underscore"
     )
     .min(3, "Username can't be lower than 3 characters")

@@ -14,7 +14,7 @@ import ErrorInputMessageComponent from "./ErrorInputMessageComponent";
 
 export default function LoginComponent() {
   const router = useRouter();
-  const loginUserSchema = loginSchema.omit({ userName: true });
+  const loginUserSchema = loginSchema.omit({ username: true });
   const [error, setError] = useState(null);
   const {
     handleSubmit,

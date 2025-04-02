@@ -4,11 +4,39 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { KeyRound, Mail, UserRound } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "@/lib/zod/loginSchema";
+import ErrorInputMessageComponent from "./ErrorInputMessageComponent";
+import { registerAction } from "@/action/authAction";
 
 export default function RegisterComponent() {
+  const router = useRouter();
+  const [error, setError] = useState(null);
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (data) => {
+    const res = await registerAction(data);
+
+    reset();
+    if (res?.data.status === "CREATED") {
+      router.push("/login");
+    } else {
+      setError(res.data.message);
+    }
+  };
+
   return (
-    <form className="space-y-6">
+    <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
       {/* username */}
       <div>
         <Label
@@ -22,7 +50,9 @@ export default function RegisterComponent() {
           type="text"
           placeholder="Please type your username"
           className={` bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
+          {...register("username")}
         />
+        <ErrorInputMessageComponent message={errors?.username?.message} />
       </div>
 
       {/* email */}
@@ -38,7 +68,9 @@ export default function RegisterComponent() {
           type="text"
           placeholder="Please type your email"
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
+          {...register("email")}
         />
+        <ErrorInputMessageComponent message={errors?.email?.message} />
       </div>
 
       {/* password */}
@@ -54,8 +86,15 @@ export default function RegisterComponent() {
           type="password"
           placeholder="Please type your password"
           className={`bg-ghost-white py-2.5 px-4 rounded-lg w-full text-light-steel-blue/90`}
+          {...register("password")}
         />
+        <ErrorInputMessageComponent message={errors?.password?.message} />
       </div>
+      {error && (
+        <div className="py-2 px-4 text-red-500 bg-red-200 rounded-lg w-full">
+          {error + " "}Please try again.
+        </div>
+      )}
 
       {/* sign in button */}
       <Button className="text-base cursor-pointer bg-persian-green text-white py-2.5 rounded-lg w-full font-bold">
