@@ -30,8 +30,70 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYREGULAR.OTF");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYMEDIUM.OTF");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYBOLD.OTF");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYTHINITALIC.OTF");
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF");
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYLIGHTITALIC.OTF");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYBLACKITALIC.OTF");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF");
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: "SF-Pro-Display";
+  src: url("/fonts/SFPRODISPLAYHEAVYITALIC.OTF");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@theme {
+  --font-sf-pro-display: "SF-Pro-Display", Arial, sans-serif;
+  --color-not-started: #f96666;
+  --color-in-progress: #4379f2;
+  --color-finished: #009990;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "SF-Pro-Display", Arial, Helvetica, sans-serif;
 }

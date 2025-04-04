@@ -1,19 +1,18 @@
 import { baseUrl } from "../constants";
 
-export const registerService = async (userData) => {
+export const loginService = async (user) => {
   try {
-    const res = await fetch(`${baseUrl}/auth/register`, {
+    const res = await fetch(`${baseUrl}/auth/login`, {
       method: "POST",
-      body: JSON.stringify(userData),
+      body: JSON.stringify(user),
       headers: {
+        accept: "*/*",
         "Content-Type": "application/json",
       },
     });
-
     const data = await res.json();
-
     return data;
-  } catch (error) {
-    console.log("Error: ", error);
+  } catch (e) {
+    console.log("Error : ", e);
   }
 };
